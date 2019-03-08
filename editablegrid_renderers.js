@@ -36,6 +36,9 @@ CellRenderer.prototype._render = function(rowIndex, columnIndex, element, value)
 
 	// add a data-title attribute used for responsiveness
 	element.setAttribute('data-title', this.column.label);
+	
+	// hide column if column has parameter hidden=true
+	element.hidden = this.column.hidden;
 
 	// call the specialized render method
 	return this.render(element, typeof value == 'string' && this.column.datatype != "html" ? (value === null ? null : htmlspecialchars(value, 'ENT_NOQUOTES').replace(/  /g, ' &nbsp;')) : value);
@@ -146,6 +149,9 @@ CheckboxCellRenderer.prototype._render = function(rowIndex, columnIndex, element
 
 	// add a data-title attribute used for responsiveness
 	element.setAttribute('data-title', this.column.label);
+	
+	// hide column if column has parameter hidden=true
+	element.hidden = this.column.hidden;
 
 	// call the specialized render method
 	return this.render(element, value);
